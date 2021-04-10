@@ -58,7 +58,7 @@ socket.on("message",(message)=>{
         createdAt: moment(message.createdAt).format('h:mm a')
     })
     $messages.insertAdjacentHTML("beforeend",html)
-    autoScroll()
+    // autoScroll()
 })
 $messageFrom.addEventListener("click",(e)=>{
     e.preventDefault()
@@ -69,7 +69,7 @@ $messageFrom.addEventListener("click",(e)=>{
         socket.emit("sendMessage", message,(serverMessage)=>{
             $button_sendMsg.removeAttribute("disabled")
             $input.value = ''
-            $input.focus()
+            // $input.focus()
 
             if (serverMessage){
                 console.log(serverMessage)
