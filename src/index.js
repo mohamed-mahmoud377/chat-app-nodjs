@@ -38,9 +38,10 @@ io.on("connection",(socket)=>{
         const user = getUser(socket.id)
         const filter =new Filter()
         filter.addWords("a7a","5wal","kosamk","kos omk")
-        if (filter.isProfane(message)){
-            return callback("bad words are not allowed")
-        }
+        message= filter.clean(message)
+        // if (filter.isProfane(message)){
+        //     return callback("bad words are not allowed")
+        // }
         io.to(user.room).emit("message",generateMessage(user.username,message))
         callback("send to server")
 
