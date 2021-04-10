@@ -77,8 +77,12 @@ io.on("connection",(socket)=>{
 
     socket.on("sendLocation",(location,callback)=>{
         const user = getUser(socket.id)
-        io.to(user.room).emit("locationMessage",generateLocMessage(user.username,`https://google.com/maps?q=${location.lat},${location.long}`))
-        callback("sent to server")
+        if (user){
+            io.to(user.room).emit("locationMessage",generateLocMessage(user.username,`https://google.com/maps?q=${location.lat},${location.long}`))
+            callback("sent to server")
+        }
+        callback()
+
     })
 
     socket.on("disconnect",()=>{
